@@ -1,5 +1,4 @@
-import { QueryKey } from "@/lib/type";
-
+import { QueryKey } from "@/types/type";
 
 export const replaceKey = (queryKey: QueryKey) => {
   const [_key, _params] = queryKey;

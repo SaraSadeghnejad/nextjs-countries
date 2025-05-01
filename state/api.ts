@@ -1,3 +1,4 @@
+import { CountryData } from "@/containers/charts/Row2";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const api = createApi({
@@ -7,7 +8,7 @@ export const api = createApi({
   reducerPath: "api",
   tagTypes: ["Countries"],
   endpoints: (build) => ({
-    getCountries: build.query<Array<any>, void>({
+    getCountries: build.query<Array<CountryData>, void>({
       query: () => "/all",
       providesTags: ["Countries"],
     }),

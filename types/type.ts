@@ -1,6 +1,5 @@
 import { Row } from "@tanstack/react-table";
 import { ChangeEventHandler } from "react";
-import { DeepPartial, FieldValues } from "react-hook-form";
 import { Schema } from "zod";
 
 export type QueryPayload = {
@@ -16,37 +15,6 @@ export type QueryPayload = {
     params?: { [key: string]: boolean };
   }
 
-export type FormFieldProps<T> = {
-    id: any;
-    options: any;
-    onChange?: ChangeEventHandler<HTMLInputElement>;
-    name: keyof T; 
-    label?: string;
-    placeholder?: string;
-    type: string;
-    description?: string;
-    required?: boolean;
-    disabled?: boolean;
-    items?: { value: string | boolean | null; label: string }[];
-    fields?: FormFieldProps<T>[]; // Nested fields
-    visibility?: {
-      dependsOn: string;
-      condition: string;
-      value: string;
-    };
-    dynamicOptions?: {
-      endpoint: string;
-      method: string;
-    };
-  };
-  
-  export interface FormProps<TFieldValues extends FieldValues> {
-    onSubmit: (data: TFieldValues) => void;
-    formField: FormFieldProps<FieldValues>[];
-    defaultValues: DeepPartial<TFieldValues>;
-    className?: string;
-    schemaType: Schema;
-  }
   export interface MutationAttr<T,> {
     body?: T; 
     SLUG?: Record<string, string>; 

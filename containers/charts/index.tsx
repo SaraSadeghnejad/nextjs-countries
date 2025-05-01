@@ -6,7 +6,7 @@ import Row3 from "./Row3";
 
 function Dashboard() {
   return (
-    <Card className="mx-10 p-6">
+    <Card className="p-2">
       <Row2 />
       <Row1 />
       <Row3 />

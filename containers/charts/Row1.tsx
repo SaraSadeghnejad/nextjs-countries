@@ -55,7 +55,7 @@ function Row1({}: Props) {
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="name" />
             <YAxis tickFormatter={numberFormat} /> {/* Format Y-axis numbers */}
-            <Tooltip formatter={(value) => numberFormat(value)} />{" "}
+            <Tooltip formatter={(value) => numberFormat(value as number)} />{" "}
             {/* Format tooltip numbers */}
             <Area
               type="monotone"
@@ -77,28 +77,12 @@ function Row1({}: Props) {
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="name" />
             <YAxis tickFormatter={numberFormat} /> {/* Format Y-axis numbers */}
-            <Tooltip formatter={(value) => numberFormat(value)} />{" "}
+            <Tooltip formatter={(value) => numberFormat(value as number)} />{" "}
             {/* Format tooltip numbers */}
             <Bar dataKey="area" fill="#82ca9d" />
           </BarChart>
         </ResponsiveContainer>
       </div>
-      {/* Example of Line Chart (Use with caution - ensure scales are appropriate) */}
-      {/* <div className="mb-4">
-        <h3 className="text-lg font-semibold">Population vs. Area</h3>
-        <ResponsiveContainer width="100%" height={300}>
-          <LineChart data={countryData} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis yAxisId="population" label={{ value: 'Population', angle: -90, position: 'insideLeft' }} tickFormatter={numberFormat} />
-            <YAxis yAxisId="area" orientation="right" label={{ value: 'Area', angle: 90, position: 'insideRight' }} tickFormatter={numberFormat} />
-            <Tooltip />
-            <Legend />
-            <Line yAxisId="population" type="monotone" dataKey="population" stroke="#8884d8" />
-            <Line yAxisId="area" type="monotone" dataKey="area" stroke="#82ca9d" />
-          </LineChart>
-        </ResponsiveContainer>
-      </div> */}
     </div>
   );
 }

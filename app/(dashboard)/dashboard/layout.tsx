@@ -1,8 +1,5 @@
-
-
 import { Navbar } from "@/components/Navbar";
 import StoreProvider from "@/state/redux";
-
 
 export default function RootLayout({
   children,
@@ -11,9 +8,9 @@ export default function RootLayout({
 }>) {
   return (
     <StoreProvider>
-      <div className="h-full w-full mt-24 mx-auto p-8">
-        <Navbar />
-        <main>{children}</main>
+      <Navbar />
+      <div className="h-full w-full">
+        <main className={`h-full flex w-full flex-col mt-24 sm:p-4 sm:mx-auto`}>{children}</main>
       </div>
     </StoreProvider>
   );

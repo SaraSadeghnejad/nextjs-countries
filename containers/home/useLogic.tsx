@@ -1,33 +1,24 @@
 "use client"
 import { useEffect, useState } from "react";
-import { Button } from "@/components/ui/button";
-import { ArrowUpDown } from "lucide-react";
-
-
-import { useRouter } from "next/navigation";
 import { useGetCountriesQuery } from "@/state/api";
-import { ColumnCell } from "@/types/type";
-
+ type Data = {
+          "Country Name": string;
+         Capital: string;
+          Population: string;
+          Area: number;
+          Flag: string;
+          id: number;
+        }[]
+      | undefined 
 
 export const useLogic = () => {
-  const router = useRouter();
 
-  const [draftData, setDraftData] = useState<ColumnCell>([]);
+  const [draftData, setDraftData] = useState<Data>([]);
   const { data } = useGetCountriesQuery();
 
   const columnsCell = [
     {
-      header: (
-        { column: col }: { column: MyColumnDef } // Explicitly typing the function parameter
-      ) => (
-        <Button
-          variant="ghost"
-          onClick={() => col.toggleSorting(col.getIsSorted() === "asc")}
-        >
-          Country Name
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      ),
+      header:' Country Name',
       accessorKey: "Country Name",
     },
 
@@ -37,39 +28,14 @@ export const useLogic = () => {
     {
       header: "Flag",
       accessorKey: "Flag",
-       cell: ({ row }) => {
-        return (
-          <img src={row.getValue("Flag")} width={40} height={30}/>
-        );
-      
-    },
+      cell: ({ row }: { row: { getValue: (key: string) => string } }) => {
+        return <img src={row.getValue("Flag")} width={40} height={30} />;
+      },
     },
   ];
-  type MyColumnDef = ColumnDef<ColumnCell, string>; // Define your ColumnDef type
-
-  // Inside your component or where you use useEffect
-  // useEffect(() => {
-  //   if (columnsCell) {
-  //     const formattedColumns: ColumnCell = columnsCell.map((column: any) => ({
-  //       header: (
-  //         { column: col }: { column: MyColumnDef } // Explicitly typing the function parameter
-  //       ) => (
-  //         <Button
-  //           variant="ghost"
-  //           onClick={() => col.toggleSorting(col.getIsSorted() === "asc")}
-  //         >
-  //           {column}
-  //           <ArrowUpDown className="ml-2 h-4 w-4" />
-  //         </Button>
-  //       ),
-  //       accessorKey: column, // The key in the data — should also map accurately to MyColumnData
-  //     }));
-  //     setColumns(formattedColumns);
-  //   }
-  // }, [data]);
 
   useEffect(() => {
-    const newArr = data?.map((entry, index) => {
+    const newArr= data?.map((entry, index) => {
       return {
         "Country Name": entry.name.common,
         Capital: entry.capital?.[0],

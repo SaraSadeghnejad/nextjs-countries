@@ -13,7 +13,7 @@ export default function RootLayout({
     <StoreProvider>
       <Navbar />
       <div className="h-full w-full">
-        <main className={`h-full flex w-full flex-col `}>{children}</main>
+        <main className={`h-full flex w-full flex-col mt-24`}>{children}</main>
       </div>
     </StoreProvider>
   );
